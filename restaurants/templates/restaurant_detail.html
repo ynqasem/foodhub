@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Detailed Restaurant list</title>
+</head>
+<body>
+	<a href="{% url 'restaurants_list' %}">
+	<p>
+		Back to the restaurants list
+		
+	</p>
+    </a>
+
+
+	<ul>
+		<li>Name: {{restaurant_detail.name}}</li>
+		<li>Description: {{restaurant_detail.description}}</li>
+		<li>Opening time: {{restaurant_detail.opening_time}}</li>
+		<li>Closing time: {{restaurant_detail.closing_time}}</li>
+	</ul>
+
+
+ 
+
+</body>
+</html>

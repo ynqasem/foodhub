@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Restaurant</title>
+</head>
+<body>
+	{% for item in restaurants %}
+	<a href="{% url 'restaurant_detail' restaurant_id=item.id %}">
+	<ul>
+		<li>Name: {{item.name}}</li>
+		<li>Description: {{item.description}}</li>
+		<li>Opening time: {{item.opening_time}}</li>
+		<li>Closing time: {{item.closing_time}}</li>
+	</ul>
+    </a>
+	{% endfor %}
+
+
+</body>
+</html>
