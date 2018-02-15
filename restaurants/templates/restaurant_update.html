@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block name_me %}
+ Update
+{% endblock name_me %}
+
+{% block stuff %}
+<body>
+	<form action="{% url 'restaurant_update' restaurant_id=restaurant_obj.id %}" method="POST">
+		{% csrf_token %}
+		{{update_form.as_p}}
+		<input type="submit" value="Create">
+	</form>
+</body>
+{% endblock stuff %}

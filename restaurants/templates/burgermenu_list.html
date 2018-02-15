@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html lang="eng">
-<head>
-	<meta charset="utf-8">
-	<title>Burger Menu List</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block name_me %}
+List
+{% endblock name_me %}
+
+{% block stuff %}
 
 	{% for item in meals %}
 	<ul>
@@ -14,6 +14,4 @@
 		<li>Last updated: {{item.updated}}</li>
 	</ul>
 	{% endfor %}
-
-</body>
-</html>
+{% endblock stuff %}
