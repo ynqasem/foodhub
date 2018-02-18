@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load crispy_forms_tags %}
+
 {% block name_me %}
  Create
 {% endblock name_me %}
@@ -8,7 +10,7 @@
 <body>
 	<form action="" method="POST">
 		{% csrf_token %}
-		{{create_form.as_p}}
+		{{create_form|crispy}}
 		<input type="submit" value="Create">
 	</form>
 </body>

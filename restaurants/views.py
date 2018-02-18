@@ -10,7 +10,7 @@ def list(request):
 	"restaurants": Restaurant.objects.all(),
 
 	}
-	return render(request, 'restaurant_list.html', context)
+	return render(request, 'restaurants_list.html', context)
 
 
 	# calls the html file detailview.html
