@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from restaurants import views
+from django.conf import settings
+from django.conf.urls.static import static 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,13 +25,14 @@ urlpatterns = [
     path('restaurant_detail/<int:restaurant_id>/', views.detail, name="restaurant_detail"),
     path('restaurant_create/', views.create, name="restaurant_create"),
     path('update/<int:restaurant_id>/', views.update, name="restaurant_update"),
-    path('delete/<int:restaurant_id>/', views.delete, name='restaurant_delete'),
+    path('delete/<int:restaurant_id>/', views.delete, name='restaurant_delete'),]
 
 
     # path('burgermenu_list_page/', views.burger_menu_list),
 
     
-]
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 # you choose whatever url you want. views."the_function_defined_in_the views_file"
 # you import the views file from the app
