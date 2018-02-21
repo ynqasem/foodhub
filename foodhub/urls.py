@@ -25,7 +25,10 @@ urlpatterns = [
     path('restaurant_detail/<int:restaurant_id>/', views.detail, name="restaurant_detail"),
     path('restaurant_create/', views.create, name="restaurant_create"),
     path('update/<int:restaurant_id>/', views.update, name="restaurant_update"),
-    path('delete/<int:restaurant_id>/', views.delete, name='restaurant_delete'),]
+    path('delete/<int:restaurant_id>/', views.delete, name='restaurant_delete'),
+    path('restaurant_register/', views.user_register, name="register"),
+    path('restaurant_login/', views.user_login, name="login"),
+    path('restaurant_logout/', views.user_logout, name="logout")]
 
 
     # path('burgermenu_list_page/', views.burger_menu_list),
@@ -33,6 +36,7 @@ urlpatterns = [
     
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # you choose whatever url you want. views."the_function_defined_in_the views_file"
 # you import the views file from the app

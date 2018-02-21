@@ -7,11 +7,9 @@
 {% endblock name_me %}
 
 {% block stuff %}
-<body>
-	<form action="{% url 'restaurant_update' restaurant_id=restaurant_obj.id %}" method="POST">
+	<form action="{% url 'restaurant_update' restaurant_id=restaurant_obj.id %}" method="POST" enctype="multipart/form-data">
 		{% csrf_token %}
 		{{update_form|crispy}}
-		<input type="submit" value="Create">
+		<input type="submit" value="Update">
 	</form>
-</body>
 {% endblock stuff %}
