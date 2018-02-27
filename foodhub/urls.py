@@ -28,7 +28,8 @@ urlpatterns = [
     path('delete/<int:restaurant_id>/', views.delete, name='restaurant_delete'),
     path('restaurant_register/', views.user_register, name="register"),
     path('restaurant_login/', views.user_login, name="login"),
-    path('restaurant_logout/', views.user_logout, name="logout")]
+    path('restaurant_logout/', views.user_logout, name="logout"),
+    path('item/create/<int:restaurant_id>/', views.create_item, name="create_item"),]
 
 
     # path('burgermenu_list_page/', views.burger_menu_list),

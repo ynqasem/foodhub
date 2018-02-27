@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Restaurant
-from .forms import RestaurantForm, UserRegisterForm, LoginForm
+from .models import Restaurant, Item
+from .forms import RestaurantForm, UserRegisterForm, LoginForm, ItemForm
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 
@@ -60,8 +60,11 @@ def list(request):
 
 
 def detail(request, restaurant_id):
+	restaurant_obj = Restaurant.objects.get(id=restaurant_id)
+	items = Item.objects.filter(restaurant=restaurant_obj)
 	context = {
-	"restaurant_detail": Restaurant.objects.get(id=restaurant_id),
+	"restaurant_detail": restaurant_obj,
+	"items": items
 
 	}
 
@@ -81,6 +84,24 @@ def create(request):
 	}
 
 	return render(request, 'restaurant_create.html', context)
+
+
+def create_item(request, restaurant_id):
+	restaurant_obj = Restaurant.objects.get(id=restaurant_id)
+	form = ItemForm()
+	if request.method == "POST":
+		form = ItemForm(request.POST)
+		if form.is_valid():
+			item = form.save(commit = False)
+			item.restaurant = restaurant_obj
+			item.save()
+			return redirect("restaurants_list")
+	context = {
+	"create_form":form,
+	"restaurant": restaurant_obj,
+	}
+
+	return render(request, 'create_item.html', context)	
 
 
 def update(request, restaurant_id):

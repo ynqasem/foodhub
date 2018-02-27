@@ -1,5 +1,5 @@
 from django import forms
-from .models import Restaurant
+from .models import Restaurant, Item
 from django.contrib.auth.models import User
 
 class LoginForm(forms.Form):
@@ -22,3 +22,12 @@ class RestaurantForm(forms.ModelForm):
 		widgets = {
 			"publish_date": forms.DateInput(attrs={"type":"date"})
 		}
+
+
+
+class ItemForm(forms.ModelForm):
+	class Meta:
+		model = Item
+		fields = ['name', 'description', 'price']
+		
+	

@@ -13,33 +13,31 @@ Restaurant
 		</div>
 	</div>
 </form>
-<div class="row">
-{% for item in restaurants %}
 
+
+<div class="row">
 <div class="card-columns">
+	{% for item in restaurants %}
 	<div class="card">
 			{% if item.image %}
 				<img class="card-img-top" src="{{item.image.url}}" alt="Card image cap">
 			{% endif %}
 			<div class="card-body">
 				<a href="{% url 'restaurant_detail' restaurant_id=item.id %}">
-				<ul>
-					<li><button type="button" class="btn btn-primary btn-lg btn-block"><h5 class="card-title">{{item.name}}</h5></button></li>
-					<li><button type="button" class="btn btn-secondary btn-lg btn-block"><p class="card-text">{{item.description}}</p></button></li>
-					<li><p class="card-text"><small class="text-muted">Opening time: {{item.opening_time}}</small></p></li>
-					<li><p class="card-text"><small class="text-muted">Closing time: {{item.closing_time}}</small></p></li>
-					<li><p class="card-text"><small class="text-muted">Publish date: {{item.publish_date}}</small></p></li>
-					<li><a href="{% url 'restaurant_delete' restaurant_id=item.id %}"><button type="button" class="btn btn-danger">Delete</button></a></li>
-					<li><a href="{% url 'restaurant_update' restaurant_id=item.id %}"><button type="button" class="btn btn-warning">Update</button></a></li>
+					<button type="button" class="btn btn-primary btn-lg btn-block"><h5 class="card-title">{{item.name}}</h5></button>
+					<button type="button" class="btn btn-secondary btn-lg btn-block"><p class="card-text">{{item.description}}</p></button>
+					<p class="card-text"><small class="text-muted">Opening time: {{item.opening_time}}</small></p>
+					<p class="card-text"><small class="text-muted">Closing time: {{item.closing_time}}</small></p>
+					<p class="card-text"><small class="text-muted">Publish date: {{item.publish_date}}</small></p>
+					<a href="{% url 'restaurant_delete' restaurant_id=item.id %}"><button type="button" class="btn btn-danger">Delete</button></a>
+					<a href="{% url 'restaurant_update' restaurant_id=item.id %}"><button type="button" class="btn btn-warning">Update</button></a>
 				</div>
 			</div>
+			</a>
+			{% endfor %}
 		</div>
-	</ul>
-</a>
-</div>
+	</div>
 
-
-{% endfor %}
 
 {% endblock stuff %}
 

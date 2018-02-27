@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block name_me %}
+ Create item
+{% endblock name_me %}
+
+{% block stuff %}
+
+	<form action="{% url 'create_item' restaurant_id=restaurant.id %}" method="POST" enctype="multipart/form-data">
+		{% csrf_token %}
+		{{create_form|crispy}}
+		<input type="submit" value="Create">
+	</form>
+
+{% endblock stuff %}
