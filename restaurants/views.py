@@ -1,9 +1,28 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from .models import Restaurant, Item
+from django.http import HttpResponse, JsonResponse
+from .models import Restaurant, Item, Rfavorite, Ifavorite
 from .forms import RestaurantForm, UserRegisterForm, LoginForm, ItemForm
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import authenticate, login, logout
+
+def favorite(request, restaurant_id):
+	restaurant_obj = Restaurant.objects.get(id=restaurant_id)
+
+	favorite_obj, created = Rfavorite.objects.get_or_create(user=request.user, restaurant=restaurant_obj)
+
+	if created:
+		action="favorite"
+	else:
+		action="unfavorite"
+		favorite_obj.delete()
+
+	favorite_count = restaurant_obj.rfavorite_set.all().count()
+
+	context = {
+	"action": action,
+	"count": favorite_count
+	}
+	return JsonResponse(context, safe=False)
 
 def user_login(request):
 	form = LoginForm()

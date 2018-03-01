@@ -29,7 +29,8 @@ urlpatterns = [
     path('restaurant_register/', views.user_register, name="register"),
     path('restaurant_login/', views.user_login, name="login"),
     path('restaurant_logout/', views.user_logout, name="logout"),
-    path('item/create/<int:restaurant_id>/', views.create_item, name="create_item"),]
+    path('item/create/<int:restaurant_id>/', views.create_item, name="create_item"),
+    path('favorite/<int:restaurant_id>/', views.favorite, name='favorite'),]
 
 
     # path('burgermenu_list_page/', views.burger_menu_list),

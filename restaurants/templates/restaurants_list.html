@@ -25,19 +25,45 @@ Restaurant
 			<div class="card-body">
 				<a href="{% url 'restaurant_detail' restaurant_id=item.id %}">
 					<button type="button" class="btn btn-primary btn-lg btn-block"><h5 class="card-title">{{item.name}}</h5></button>
+				</a>
 					<button type="button" class="btn btn-secondary btn-lg btn-block"><p class="card-text">{{item.description}}</p></button>
 					<p class="card-text"><small class="text-muted">Opening time: {{item.opening_time}}</small></p>
 					<p class="card-text"><small class="text-muted">Closing time: {{item.closing_time}}</small></p>
 					<p class="card-text"><small class="text-muted">Publish date: {{item.publish_date}}</small></p>
+					<button class="btn btn-secondary" onclick="somefunction({{item.id}})">
+						<span id="star-number-{{item.id}}">0</span>
+						<i id="star-color-{{item.id}}" class="fas fa-star"></i>
+					</button>
 					<a href="{% url 'restaurant_delete' restaurant_id=item.id %}"><button type="button" class="btn btn-danger">Delete</button></a>
 					<a href="{% url 'restaurant_update' restaurant_id=item.id %}"><button type="button" class="btn btn-warning">Update</button></a>
 				</div>
 			</div>
-			</a>
+			
 			{% endfor %}
 		</div>
 	</div>
 
+<script>
 
+	function somefunction(id){
+		$.ajax({
+			type:"GET",
+			url:"/favorite/"+id,
+			error:function(){
+				console.log("You failed to do it.")
+			},
+			success: function(data){
+				console.log(data);
+				$("#star-number-"+id).text(data.count);
+				if(data.action==="favorite"){
+					$("#star-color-"+id).addClass("text-warning");
+				}
+				else{
+					$("#star-color-"+id).removeClass("text-warning");
+				}
+			}
+		})
+	}
+</script>
 {% endblock stuff %}
 

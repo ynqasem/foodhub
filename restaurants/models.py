@@ -26,3 +26,11 @@ class Item(models.Model):
 	def __str__(self):
 		return self.name
 
+class Rfavorite(models.Model):
+	user = models.ForeignKey(User, on_delete=models.CASCADE)
+	restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
+
+
+class Ifavorite(models.Model):
+	user = models.ForeignKey(User, on_delete=models.CASCADE)
+	restaurant = models.ForeignKey(Item, on_delete=models.CASCADE)
