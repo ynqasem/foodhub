@@ -11,12 +11,19 @@
 	</p>
 	</a>
 
-	<ul>
-		<li>Name: {{restaurant_detail.name}}</li>
-		<li>Description: {{restaurant_detail.description}}</li>
-		<li>Opening time: {{restaurant_detail.opening_time}}</li>
-		<li>Closing time: {{restaurant_detail.closing_time}}</li>
-	</ul>
+	<div class="card" style="width: 18rem;">
+			{% if restaurant_detail.image %}
+				<img height="200px" width="200px" class="card-img-top" src="{{restaurant_detail.image.url}}" alt="Card image cap">
+			{% endif %}
+  	<div class="card-body">
+    <h5 class="card-title">Name: {{restaurant_detail.name}}</h5>
+    <p class="card-text">Description: {{restaurant_detail.description}}</p>
+    <p class="card-text">Opening time: {{restaurant_detail.opening_time}}</p>
+    <p class="card-text">Closing time: {{restaurant_detail.closing_time}}</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  	</div>
+	</div>
+
 
 	<ul>
 
@@ -30,3 +37,11 @@
 
 
 {% endblock stuff %}
+
+<ul>
+		<li>Name: {{restaurant_detail.name}}</li>
+		<li>Description: {{restaurant_detail.description}}</li>
+		<li>Opening time: {{restaurant_detail.opening_time}}</li>
+		<li>Closing time: {{restaurant_detail.closing_time}}</li>
+	</ul>
+

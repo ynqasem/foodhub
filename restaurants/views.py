@@ -63,13 +63,21 @@ def user_logout(request):
 
 
 def list(request):
+	if not request.user.is_authenticated:
+		return redirect('login')
 	object_list = Restaurant.objects.all()
 	object_list = object_list.order_by('publish_date', 'name')
 	query = request.GET.get('q')
 	if query:
 		object_list = object_list.filter(name__contains=query)
+
+	favorited_restaurants = []
+	favorites = request.user.rfavorite_set.all()
+	for favorite in favorites:
+		favorited_restaurants.append(favorite.restaurant)
 	context = {
 	"restaurants": object_list,
+	"my_favorites": favorited_restaurants
 
 	}
 	return render(request, 'restaurants_list.html', context)
@@ -92,6 +100,8 @@ def detail(request, restaurant_id):
 
 
 def create(request):
+	if not request.user.is_authenticated:
+		return redirect('login')
 	form = RestaurantForm()
 	if request.method == "POST":
 		form = RestaurantForm(request.POST, request.FILES or None)
@@ -106,6 +116,8 @@ def create(request):
 
 
 def create_item(request, restaurant_id):
+	if not request.user.is_authenticated:
+		return redirect('login')
 	restaurant_obj = Restaurant.objects.get(id=restaurant_id)
 	form = ItemForm()
 	if request.method == "POST":
@@ -124,6 +136,10 @@ def create_item(request, restaurant_id):
 
 
 def update(request, restaurant_id):
+	if not request.user.is_authenticated:
+		return redirect('login')
+	if not (request.user.is_staff or request.user==Restaurant.owner):
+		return HttpResponse("you're not the owner or the staff. You are not allowed to edit this")
 	restaurant_obj = Restaurant.objects.get(id=restaurant_id)
 	form = RestaurantForm(instance=restaurant_obj)
 	if request.method == "POST":
@@ -140,6 +156,10 @@ def update(request, restaurant_id):
 
 
 def delete(request, restaurant_id):
+	if not request.user.is_authenticated:
+		return redirect('login')
+	if not (request.user.is_staff):
+		return HttpResponse("you are not staff, you cant delete this ")
 	
 	instance = get_object_or_404(Restaurant, id=restaurant_id)
 	instance.delete()

@@ -31,8 +31,8 @@ Restaurant
 					<p class="card-text"><small class="text-muted">Closing time: {{item.closing_time}}</small></p>
 					<p class="card-text"><small class="text-muted">Publish date: {{item.publish_date}}</small></p>
 					<button class="btn btn-secondary" onclick="somefunction({{item.id}})">
-						<span id="star-number-{{item.id}}">0</span>
-						<i id="star-color-{{item.id}}" class="fas fa-star"></i>
+						<span id="star-number-{{item.id}}">{{item.rfavorite_set.count}}</span>
+						<i id="star-color-{{item.id}}" class="fas fa-star {% if item in my_favorites %}text-warning{% endif %}"></i>
 					</button>
 					<a href="{% url 'restaurant_delete' restaurant_id=item.id %}"><button type="button" class="btn btn-danger">Delete</button></a>
 					<a href="{% url 'restaurant_update' restaurant_id=item.id %}"><button type="button" class="btn btn-warning">Update</button></a>

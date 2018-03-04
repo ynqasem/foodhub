@@ -9,7 +9,7 @@ class Restaurant(models.Model):
 	closing_time = models.TimeField(auto_now_add=True)
 	img_url = models.URLField()
 	publish_date = models.DateField(null=True)
-	author = models.ForeignKey(User, default=1, on_delete=models.CASCADE)
+	owner = models.ForeignKey(User, default=1, on_delete=models.CASCADE) 
 
 	def __str__(self):
 		return self.name
