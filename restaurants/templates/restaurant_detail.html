@@ -24,8 +24,25 @@
   	</div>
 	</div>
 
+	<br>
+	<br>
 
-	<ul>
+	<p> Food Menu:</p>
+
+<ul class="list-group">
+	{% for item in items %}
+  <li class="list-group-item">{{item.name}}: {{item.description}}: price = {{item.price}} KWD</li>
+  <li class="list-group-item"></li>
+  {% endfor %}
+</ul>
+	
+
+
+{% endblock stuff %}
+
+
+
+<ul>
 
 		{% for item in items %}
 		<li>{{item.name}}</li>
@@ -33,15 +50,3 @@
 		<li>{{item.price}}</li>
 		{% endfor %}
 	</ul>
-
-
-
-{% endblock stuff %}
-
-<ul>
-		<li>Name: {{restaurant_detail.name}}</li>
-		<li>Description: {{restaurant_detail.description}}</li>
-		<li>Opening time: {{restaurant_detail.opening_time}}</li>
-		<li>Closing time: {{restaurant_detail.closing_time}}</li>
-	</ul>
-

@@ -7,9 +7,10 @@ Restaurant
 <br>
 <form action="{% url 'restaurants_list' %}" method="GET">
 	<div class="input-group mb-3">
-		<input type="text" class="form-control" placeholder="Search for article..." aria-label="Search" name="q">
+		<input type="text" class="form-control" placeholder="Search for a restaurant..." aria-label="Search" name="q">
 		<div class="input-group-append">
-			<input type="submit" class="input-group-text" value="Search">
+			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+			{# <input type="submit" class="input-group-text" value="Search"> #}
 		</div>
 	</div>
 </form>
