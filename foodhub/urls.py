@@ -32,11 +32,11 @@ urlpatterns = [
     path('restaurant_logout/', views.user_logout, name="logout"),
     path('item/create/<int:restaurant_id>/', views.create_item, name="create_item"),
     path('favorite/<int:restaurant_id>/', views.favorite, name='favorite'),
-    path('list/', RestaurantListAPIView.as_view()),
-    path('detail/<int:restaurant_id>/', RestaurantDetailAPIView.as_view()),
-    path('delete/<int:restaurant_id>/', RestaurantDeleteAPIView.as_view()),
-    path('create/', RestaurantCreateAPIView.as_view()),
-    path('update/<int:restaurant_id>/', RestaurantUpdateAPIView.as_view()),
+    path('list/', RestaurantListAPIView.as_view(), name="list"),
+    path('detail/<int:restaurant_id>/', RestaurantDetailAPIView.as_view(), name="detail"),
+    path('deleteapi/<int:restaurant_id>/', RestaurantDeleteAPIView.as_view(), name="deleteapi"),
+    path('create/', RestaurantCreateAPIView.as_view(), name="create"),
+    path('updateapi/<int:restaurant_id>/', RestaurantUpdateAPIView.as_view(), name="updateapi"),
 
 
     ]
