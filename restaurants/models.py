@@ -15,8 +15,6 @@ class Restaurant(models.Model):
 		return self.name
 
 
-
-
 class Item(models.Model):
 	name = models.CharField(max_length=225)
 	description = models.TextField()
