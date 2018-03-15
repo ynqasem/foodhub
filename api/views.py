@@ -9,13 +9,30 @@ from .serializers import ( RestaurantListSerializer,
 	FavoriteCreateSerializer, 
 	ItemCreateSerializer, 
 	ItemListSerializer,
-	RegisterUserSerializer
+	RegisterUserSerializer,
+	UserLoginSerializer
 	)
 
 from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
 from .permissions import IsOwnerOrStaff
 from rest_framework.filters import SearchFilter, OrderingFilter
 from django.contrib.auth.models import User
+from rest_framework.views import APIView 
+from rest_framework.response import Response
+from rest_framework.status import HTTP_200_OK, HTTP_400_BAD_REQUEST
+
+class LoginAPIView(APIView):
+	permission_classes = [AllowAny]
+	serializer_class = UserLoginSerializer
+
+	def post(self, request, format=None):
+		my_data = request.data
+		my_serializer = UserLoginSerializer(data=my_data)
+		if my_serializer.is_valid(raise_exception=True):
+			new_data = my_serializer.data 
+			return Response(new_data, status=HTTP_200_OK)
+		return Response(my_serializer.errors, status+HTTP_400_BAD_REQUEST)
+
 
 class UserRegisterView(CreateAPIView):
 	queryset = User.objects.all()

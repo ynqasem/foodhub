@@ -18,7 +18,7 @@ from django.urls import path
 from restaurants import views
 from django.conf import settings
 from django.conf.urls.static import static 
-from  api.views import RestaurantListAPIView, RestaurantDetailAPIView, RestaurantDeleteAPIView, RestaurantCreateAPIView, RestaurantUpdateAPIView, ItemCreateAPIView, UserRegisterView
+from  api.views import RestaurantListAPIView, RestaurantDetailAPIView, RestaurantDeleteAPIView, RestaurantCreateAPIView, RestaurantUpdateAPIView, ItemCreateAPIView, UserRegisterView, LoginAPIView
 
 
 urlpatterns = [
@@ -40,6 +40,7 @@ urlpatterns = [
     path('updateapi/<int:restaurant_id>/', RestaurantUpdateAPIView.as_view(), name="updateapi"),
     path('item/createapi/<int:restaurant_id>/', ItemCreateAPIView.as_view(), name="itemcreateapi"),
     path('api/register/', UserRegisterView.as_view(), name="api-register"),
+    path('api/login/', LoginAPIView.as_view(), name="api-login"),
 
 
     ]
